@@ -1,0 +1,20 @@
+meta: # Have this meta info always, the other stuff relies on it
+  project_name: MyProjectName
+  run_name: v0000-PPO-CartPole # MUST be the same as the filename
+  experiment_name: v0000
+  message: Runs PPO on CartPole as a dummy example.
+  file: src/runs/v0000/v0000_test.py
+infra:
+  seeds: 3  # How many total seeds to run - Using many is recommended, around 10 or more if feasible
+  cores: 1  # How many seeds to run at once in parallel. I'd say 90% of the core count is a good rule of thumb, except if you want to use the machine for anything else. If you use the GPU, I'd make this a bit less, as many processes on the GPU at once can either run out of VRAM or slow things down.
+  gpus: 1
+env:
+  name: CartPole-v1
+method:
+  name: SB3_PPO
+  model: PPO
+# Add in anything else you want here and reference as yaml_config("a/b/c") in the code.
+train:
+  steps: 20000
+eval:
+  episodes: 100
